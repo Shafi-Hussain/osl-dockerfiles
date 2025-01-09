@@ -3,7 +3,7 @@ name: UBI Image Builder
 on: [push, workflow_dispatch]
 
 env:
-    BUILD_TAG: 'shafi/builder_img'
+    BUILD_TAG: 'quay.io/shafi/builder_img'
 
 jobs:
     build-ubi-builder:
