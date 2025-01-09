@@ -20,12 +20,13 @@ jobs:
               with:
                 driver-opts: network=host
             
-            # - name: Login to GHCR
-            #   if: github.event_name != 'pull_request'
-            #   uses: docker/login-action@v3
-            #   with:
-            #     username: ${{ secrets.USERNAME }}
-            #     password: ${{ secrets.PASSWORD }}
+            - name: Login to Quay
+              if: github.event_name != 'pull_request'
+              uses: docker/login-action@v3
+              with:
+                registry: quay.io
+                username: ${{ secrets.QUAY_USERNAME }}
+                password: ${{ secrets.QUAY_PASSWORD }}
             
 
             - name: Build & Push Image
@@ -34,5 +35,5 @@ jobs:
                 platforms: linux/ppc64le
                 context: "{{defaultContext}}:ubi-ppc64le"
                 file: Dockerfile
-                push: false
+                push: true
                 tags: ${{ env.BUILD_TAG }}
