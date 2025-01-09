@@ -32,7 +32,7 @@ jobs:
               uses: docker/build-push-action@v5
               with:
                 platforms: linux/ppc64le
-                context: ./ubi-ppc64le
+                context: "{{defaultContext}}:ubi-ppc64le"
                 file: Dockerfile
                 push: false
                 tags: ${{ env.BUILD_TAG }}
