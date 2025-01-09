@@ -3,7 +3,7 @@ name: UBI Image Builder
 on: [push, workflow_dispatch]
 
 env:
-    BUILD_TAG: 'quay.io/shafi/builder_img'
+    BUILD_TAG: 'builder_img'
 
 jobs:
     build-ubi-builder:
@@ -36,4 +36,4 @@ jobs:
                 context: "{{defaultContext}}:ubi-ppc64le"
                 file: Dockerfile
                 push: true
-                tags: ${{ env.BUILD_TAG }}
+                tags: quay.io/${{ secrets.QUAY_USERNAME }}/${{ env.BUILD_TAG }}
